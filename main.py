@@ -20,12 +20,18 @@ def print_result(name: str, result):
     print(f"Fronteira : {result.max_frontier_size} (máx)")
 
 
-if __name__ == "__main__":
-    initial = State((2, 8, 3, 1, 6, 4, 7, 0, 5))   # ~20 movimentos até a solução
-
-    print("Estado inicial:")
+def run_all(initial: State):
+    print("\nEstado inicial:")
     print(initial)
 
     print_result("BFS",  BFS().search(initial))
     print_result("DFS",  DFS().search(initial))
     print_result("A*",   AStar().search(initial))
+
+
+if __name__ == "__main__":
+    # 20 movimentos até a solução
+    run_all(State((7, 2, 4, 5, 0, 6, 8, 3, 1)))
+
+    # sem solução: não é possível chegar ao objetivo a partir deste estado
+    run_all(State((2, 8, 3, 1, 6, 4, 7, 0, 5)))
